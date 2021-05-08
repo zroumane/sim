@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0">
+  <title>Simulation</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+  <script src="main.js" defer></script>
+</head>
+<body>
+
+  <div class="app">
+    <div class="sidebar">
+      <div class="sidebar-content">
+        <h2>Simulation Génétique</h2>
+        <label>Allèles : </label>
+          <table>
+            <tdead>
+                <tr>
+                    <td>Nom</td>
+                    <td>Fréquence</td>
+                    <td>Pression</td>
+                </tr>
+            </tdead>
+            <tbody class="alleles">
+                <tr>
+                  <td><input data-type="name" type="text" placeholder="Nom" value="A1"></td>
+                  <td><input data-type="frequence" type="number" placeholder="Fréquence" step="0.1" min="0" max="1" value="0.5"/></td>
+                  <td><input data-type="pression" type="number" placeholder="Pression" step="0.1" min="0" max="1"/></td>
+                </tr>
+                <tr>
+                  <td><input data-type="name" type="text" placeholder="Nom" value="A1"></td>
+                  <td><input data-type="frequence" type="number" placeholder="Fréquence" step="0.1" min="0" max="1" value="0.5"/></td>
+                  <td><input data-type="pression" type="number" placeholder="Pression" step="0.1" min="0" max="1"/></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="group">
+          <label>Population : </label>
+          <input id="population" type="text" placeholder="Nom" value="50">
+        </div>
+
+        <div class="group">
+          <label>Génération : </label>
+          <input id="generation" type="text" placeholder="Nom" value="10">
+        </div>
+
+        <div id="zoneErr">
+          La somme des Effectif doit être égale à 1
+        </div>
+        <button id="startBtn">Lancer</button>
+      </div>
+    </div>
+    <div class="chart">
+      <canvas id="zoneChart"></canvas>
+    </div>
+  </div>
+
+</body>
+</html>
