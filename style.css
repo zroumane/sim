@@ -24,6 +24,7 @@ body{
   .sidebar {
     width: 25%;
     min-height: 100vh;
+    min-width: 350px;
     border-right: solid 2px black;
   }
 
@@ -101,11 +102,17 @@ button:hover{
 }
 
 #zoneErr{
+  font-size: 14px;
   display: none;
   background-color: #000000d5;
   border: 4px solid #831616;
-  padding: 0.5rem;
+  padding: 0.3rem;
   color: #FFF;
   border-radius: 0.2rem;
   margin-bottom: 0.5rem;
+}
+
+#zoneErr ul {
+  margin: 0.5rem;
+  padding-left: 1rem;
 }
