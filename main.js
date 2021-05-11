@@ -4,6 +4,8 @@ const showError = () => zoneErr.style.display = 'block'
 const zoneChart = document.querySelector('#zoneChart')
 const destroyChart = () => window.simChart.destroy()
 
+const addAllele = document.querySelector('#addAllele')
+
 /* Fonction de mise à jour du graphique */
 const addChartData = (generation, frequences) => {
   let chart = window.simChart
@@ -22,6 +24,44 @@ const addChartData = (generation, frequences) => {
   chart.update();
 }
 
+/* Cache ou montre la colone suppression en fonction du nombre d'allèle */
+const checkAllele = () => {
+
+  var delCol = document.querySelectorAll('.del-col')
+  if (document.querySelectorAll('.alleles .allele').length === 2) {
+    delCol.forEach(d => d.style.display = 'none')
+  }
+  else {
+    delCol.forEach(d => d.style.display = 'block')
+  }
+}
+checkAllele()
+
+/* Fonction suppression d'une allèle */
+const addDelListener = (alleleRef, delBtn) => {
+  delBtn.addEventListener('click', () => {
+    alleleRef.remove()
+    checkAllele()
+  })
+}
+document.querySelectorAll('.delete-allele').forEach(delBtn => {
+  var alleleRef = delBtn.parentElement.parentElement
+  addDelListener(alleleRef, delBtn)
+})
+
+/* Fonction ajout d'un allèle */
+addAllele.firstElementChild.firstElementChild.addEventListener('click', () => {
+  var ref = document.querySelector('.alleles .allele')
+  var clone = ref.cloneNode(true)
+  clone.querySelectorAll('input').forEach(input => {
+    if (input.type === 'number' || input.type === 'text') input.value = ''
+  })
+  addDelListener(clone, clone.querySelector('.delete-allele'))
+  document.querySelector('.alleles').insertBefore(clone, addAllele)
+  checkAllele()
+})
+
+
 /* Simulation */
 document.querySelector('#startBtn').addEventListener('click', async () => {
   if (window.simChart) destroyChart()
@@ -39,14 +79,13 @@ document.querySelector('#startBtn').addEventListener('click', async () => {
   let error = false
   let alleles = []
   let totalfrequence = 0
-  Array.from(document.querySelector('.alleles').children).forEach(allele => {
+  document.querySelectorAll('.allele').forEach(allele => {
     let n = allele.querySelector('input[data-type="name"]').value
     let f = parseFloat(allele.querySelector('input[data-type="frequence"]').value)
     if (typeof f != 'number') return error = true
     alleles.push({
       name: n,
       frequence: f,
-      effectif: Math.round(f * (population * 2))
     })
     totalfrequence += f
   })
@@ -79,7 +118,6 @@ document.querySelector('#startBtn').addEventListener('click', async () => {
       scales: { y: { min: 0, max: 1, alignToPixels: true } }
     }
   });
-
   addChartData(0, Array.from(alleles, allele => allele.frequence))
 
 
@@ -122,9 +160,9 @@ document.querySelector('#startBtn').addEventListener('click', async () => {
     /**
      * Calcul des nouvelles fréquences d'allèles
      * en fonction du nouveau effectif de population.
-     * Mise à jour graphique.
      */
     alleles.forEach(allele => { allele.frequence = allele.effectif / (population * 2) })
+
     addChartData(generation, Array.from(alleles, allele => allele.frequence))
 
   }
