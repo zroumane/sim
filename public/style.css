@@ -22,15 +22,28 @@ body{
   }
 
   .sidebar {
-    width: 25%;
+    width: 30%;
     min-height: 100vh;
-    min-width: 350px;
+    min-width: 400px;
     border-right: solid 2px black;
   }
 
-  .chart{
+  .charts{
     width: 75%;
+    min-height:100%;
   }
+}
+
+.chart{
+  height: 100vh;
+}
+
+.isMig{
+  height: 50% !important;
+}
+
+.mig-chart{
+  display: none;
 }
 
 .sidebar-content{
@@ -57,9 +70,8 @@ td{
   text-align: center;
 }
 
-
 label{
-  font-size: 20px;
+  font-size: 1.4rem;
 }
 
 input{
@@ -67,11 +79,42 @@ input{
   border: 1px solid black;
   padding: 0.2rem;
   outline: 0;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
-td input{
+.alleles input{
   width: 90%;
+}
+
+.alleles .firstTd {
+  display: flex;
+  flex-wrap: nowrap
+  ;
+}
+
+.alleles .firstTd input:nth-child(1){
+  flex: 9;
+}
+
+.alleles .firstTd input:nth-child(2){
+ flex: 1;
+ flex-shrink: 0;
+ margin: 0.2rem;
+ margin-left: 0.5rem;
+}
+
+input[type = "submit"], input[type = "color"], input[type="checkbox"], button{
+  cursor: pointer;
+}
+
+input[type = "color"]{
+  border-radius: 100%;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+}
+input[type = "color"]::-webkit-color-swatch-wrapper {
+  padding: 0;	
 }
 
 
@@ -85,6 +128,24 @@ td input{
 .group input {
   flex-grow: 1;
   margin-left: 0.5rem;
+}
+
+.migration{
+  border: black 1px solid;
+  border-radius: 0.2rem;
+  padding: 0.4rem;
+  margin: 0.5rem;
+}
+
+.migration .group{
+  margin-left: 0.6rem;
+  margin-right: 0.6rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+
+#migrationContent label{
+  font-size: 1.2rem;
 }
 
 button{
@@ -101,7 +162,7 @@ button:hover{
   background-color: black;
 }
 
-#zoneErr{
+.zoneErr{
   font-size: 14px;
   display: none;
   background-color: #000000d5;
@@ -112,7 +173,7 @@ button:hover{
   margin-bottom: 0.5rem;
 }
 
-#zoneErr ul {
+.zoneErr ul {
   margin: 0.5rem;
   padding-left: 1rem;
 }

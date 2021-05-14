@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0">
+  <title>Simulation Génétique</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+  <script src="./main.js" defer></script>
+</head>
+<body>
+
+  <div class="app">
+    <div class="sidebar">
+      <div class="sidebar-content">
+        <h2>Simulation Génétique</h2>
+        <label>Allèles : </label>
+          <table>
+            <colgroup>
+              <col style="width:60%">
+              <col style="width:25%">
+            </colgroup>
+            <tdead>
+              <tr>
+                <td>Nom</td>
+                <td>Fréquence</td>
+                <td class="del-col">-</td>
+              </tr>
+            </tdead>
+            <tbody class="alleles">
+                <tr class="allele">
+                  <td class="firstTd">
+                    <input data-type="name" type="text" placeholder="Nom" value="A1">
+                    <input data-type="color" type="color">
+                  </td>
+                  <td><input data-type="frequence" type="number" placeholder="Fréq" step="0.1" min="0" max="1" value="0.5"/></td>
+                  <td class="del-col"><input class="delete-allele" type="submit" value="✕"/></td>
+                </tr>
+                <tr class="allele">
+                  <td class="firstTd">
+                    <input data-type="name" type="text" placeholder="Nom" value="A2">
+                    <input data-type="color" type="color">
+                  </td>
+                  <td><input data-type="frequence" type="number" placeholder="Fréq" step="0.1" min="0" max="1" value="0.5"/></td>
+                  <td class="del-col"><input class="delete-allele" type="submit" value="✕"/></td>
+                </tr>
+                <tr id="addAllele">
+                  <td colspan="4">
+                    <input type="submit" value="+">
+                  </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="group">
+          <label>Population : </label>
+          <input id="population" type="text" value="50">
+        </div>
+        <div class="group">
+          <label>Génération : </label>
+          <input id="generation" type="text" value="10">
+        </div>
+        <div class="zoneErr" id="allelesErrEl">
+          <span>Notes important : </span><br>
+            <ul>
+              <li>Les noms d'allèles doivent être définis.</li>
+              <li>La somme des fréquences doit être égale a 1.</li>
+              <li>La population doit être supérieur a 2.</li>
+              <li>La simulation s'effectuer sur minimum 1 génération.</li>
+            </ul>
+        </div>
+        <div class="migration">
+          <input type="checkbox" id="enableMigration">
+          <label id="migrationLabel" style="opacity:0.6">Migration : </label>
+          <div id="migrationContent" style="display:none">
+            <div class="group">
+              <label>A partir de : </label>
+              <input id="mgStart" type="text" value="5">
+            </div>
+            <div class="group">
+              <label>Population : </label>
+              <input id="mgPopulation" type="text" value="20">
+            </div>
+          </div>
+        </div>
+        <div class="zoneErr" id="migErrEl">
+          <span>Notes important : </span><br>
+            <ul>
+              <li>La génération de migration doit être inférieur au nombre de génération initial.</li>
+              <li>La population qui migre doit etre inférieur à la population initiale.</li>
+            </ul>
+        </div>
+        <button id="startBtn">Lancer</button>
+      </div>
+    </div>
+    <div class="charts">
+      <div class="chart">
+        <canvas id="mainChartEl"></canvas>
+      </div>
+      <div class="chart mig-chart">
+        <canvas id="migChartEl"></canvas>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
